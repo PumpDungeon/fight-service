@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import amqp from 'amqplib';
-// import { generateMap } from './helpers/generateMap.js';
 
 const app = express();
 
