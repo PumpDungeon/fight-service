@@ -29,7 +29,7 @@ app.post('/api/fight', async (req, res) => {
     const {player} = req.body;
 
     if (!player) {
-        return res.status(500);
+        return res.status(500).send();
     }
 
     await fetch(`${process.env.PLAYER_SERVICE_URL}/api/setPlayer`, {
@@ -44,13 +44,13 @@ app.post('/api/fight', async (req, res) => {
         credentials: 'include'
     });
 
+    res.status(200).send();
+
     await sendMessageToRabbitMQ(player._id, {
         player: {
             gold: player.gold + 3
         }
     })
-
-    return res.status(200);
 });
 
 const PORT = process.env.PORT || 3001;
